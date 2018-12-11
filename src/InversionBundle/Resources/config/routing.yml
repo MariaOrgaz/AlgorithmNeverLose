@@ -1,0 +1,126 @@
+index:
+    path:     /index
+    defaults: { _controller: InversionBundle:Default:index }
+algoritmo:
+    path:     /algoritmo
+    defaults: { _controller: InversionBundle:Default:algoritmo }
+json_datos:
+    path:     /json-datos
+    defaults: { _controller: InversionBundle:Default:jsonDatos }
+    options:
+        expose: true
+algoritmo_buscar:
+    path: /buscar
+    defaults: { _controller: InversionBundle:Default:buscarAlgoritmo }
+    options:
+        expose: true
+multilineal:
+    path: /multilineal
+    defaults: { _controller: InversionBundle:Default:multilineal }
+    options:
+        expose: true
+mejora_parametro:
+    path: /mejora-parametro
+    defaults: { _controller: InversionBundle:Default:mejoraParametros }
+    options:
+        expose: true
+santander:
+    path:     /santander
+    defaults: { _controller: InversionBundle:Default:santander }
+abengoa:
+    path:     /abengoa
+    defaults: { _controller: InversionBundle:Default:abengoa }
+abertis:
+    path:     /abertis
+    defaults: { _controller: InversionBundle:Default:abertis }
+acerinox:
+    path:     /acerinox
+    defaults: { _controller: InversionBundle:Default:acerinox }
+acs:
+    path:     /acs
+    defaults: { _controller: InversionBundle:Default:acs }
+aena:
+    path:     /aena
+    defaults: { _controller: InversionBundle:Default:aena }
+amadeus:
+    path:     /amadeus
+    defaults: { _controller: InversionBundle:Default:amadeus }
+arcelomittal:
+    path:     /arcelomittal
+    defaults: { _controller: InversionBundle:Default:arcelomittal }
+bankia:
+    path:     /bankia
+    defaults: { _controller: InversionBundle:Default:bankia }
+bankinter:
+    path:     /bankinter
+    defaults: { _controller: InversionBundle:Default:bankinter }
+bbva:
+    path:     /bbva
+    defaults: { _controller: InversionBundle:Default:bbva }
+caixabank:
+    path:     /caixabank
+    defaults: { _controller: InversionBundle:Default:caixabank }
+dia:
+    path:     /dia
+    defaults: { _controller: InversionBundle:Default:dia }
+enagas:
+    path:     /enagas
+    defaults: { _controller: InversionBundle:Default:enagas }
+fcc:
+    path:     /fcc
+    defaults: { _controller: InversionBundle:Default:fcc }
+ferrovial:
+    path:     /ferrovial
+    defaults: { _controller: InversionBundle:Default:ferrovial }
+gamesa:
+    path:     /gamesa
+    defaults: { _controller: InversionBundle:Default:gamesa }
+gas_natural:
+    path:     /gas-natural
+    defaults: { _controller: InversionBundle:Default:gas_natural }
+grifols:
+    path:     /grifols
+    defaults: { _controller: InversionBundle:Default:grifols }
+iag:
+    path:     /iag
+    defaults: { _controller: InversionBundle:Default:iag }
+iberdrola:
+    path:     /iberdrola
+    defaults: { _controller: InversionBundle:Default:iberdrola }
+inditex:
+    path:     /inditex
+    defaults: { _controller: InversionBundle:Default:inditex }
+indra:
+    path:     /indra
+    defaults: { _controller: InversionBundle:Default:indra }
+jazztel:
+    path:     /jazztel
+    defaults: { _controller: InversionBundle:Default:jazztel }
+mapfre:
+    path:     /mapfre
+    defaults: { _controller: InversionBundle:Default:mapfre }
+mediaset:
+    path:     /mediaset
+    defaults: { _controller: InversionBundle:Default:mediaset }
+ohl:
+    path:     /ohl
+    defaults: { _controller: InversionBundle:Default:ohl }
+popular:
+    path:     /popular
+    defaults: { _controller: InversionBundle:Default:popular }
+repsol:
+    path:     /repsol
+    defaults: { _controller: InversionBundle:Default:repsol }
+sabadell:
+    path:     /sabadell
+    defaults: { _controller: InversionBundle:Default:sabadell }
+sacyr:
+    path:     /sacyr
+    defaults: { _controller: InversionBundle:Default:sacyr }
+tecnicas_reunidas:
+    path:     /tecnicas-reunidas
+    defaults: { _controller: InversionBundle:Default:tecnicas_reunidas }
+telefonica:
+    path:     /telefonica
+    defaults: { _controller: InversionBundle:Default:telefonica }
+

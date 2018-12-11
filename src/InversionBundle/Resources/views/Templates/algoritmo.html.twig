@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Inversión en Bolsa{% endblock %}</title>
+    {% block stylesheets %}
+        <link href="https://code.highcharts.com/css/highcharts.css">
+        <link href="{{ asset('public/css/bootstrap.min.css') }}" type="text/css" rel="stylesheet"/>
+        <link href="{{ asset('public/css/style.css') }}" type="text/css" rel="stylesheet"/>
+        <link href="{{ asset('public/css/animate.css') }}" type="text/css" rel="stylesheet"/>
+        <link href="{{ asset('public/font-awesome/css/font-awesome.css') }}" type="text/css" rel="stylesheet"/>
+    {% endblock %}
+</head>
+
+<body>
+<div id="wrapper">
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element"> <span>
+                            <img alt="image" class="img-circle" src="public/img/profile_small.jpg"/>
+                             </span>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">María
+                                        Orgaz</strong>
+                             </span> <span class="text-muted text-xs block">Developer
+                                          </span> </span> </a>
+                    </div>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Índices</span><span
+                                class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="graph_flot.html">IBEX 35</a></li>
+                        <li><a href="#">DOW 30</a></li>
+                        <li><a href="#">EURO STOXX 50</a></li>
+                        <li><a href="#">DAX</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+
+    <div id="page-wrapper" class="gray-bg">
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-lg-10">
+                <h2>Índices</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="app_dev.php">Inicio</a>
+                    </li>
+                    <li>
+                        <a>Índices</a>
+                    </li>
+                    <li class="active">
+                        <strong>IBEX 35</strong>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="wrapper wrapper-content animated fadeInRight">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    {% for dat in data %}
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer">
+            <div class="pull-right">
+                Versión <strong>1.0</strong>
+            </div>
+            <div>
+                <strong>Copyright</strong> María Orgaz &copy; 2018
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% block javascripts %}
+
+    <script src="{{ asset('public/js/jquery-2.1.1.js') }}"></script>
+    <script src="{{ asset('public/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('public/js/inspinia.js') }}"></script>
+    <script src="{{ asset('public/js/plugins/pace/pace.min.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="{{ asset('public/js/highstock.js') }}"></script>
+    <script src="{{ asset('public/js/exporting.js') }}"></script>
+    <script src="http://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="http://code.highcharts.com/modules/export-data.js"></script>
+    <script src="{{ asset('public/js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
+    <script src="{{ asset('public/js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
+
+{% endblock %}
+</body>
+
+</html>

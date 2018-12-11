@@ -1,0 +1,26 @@
+primero obtenemos los datos variando el riesgo, el resto de parametros tienen los siguientes valores:
+fechas: 1-1-2008 hasta 1-10-2018
+capital: 120mil
+inv. inicial: 50%
+N∫ compras: 3
+Inv. compra: 25%
+% compra: 7%
+Beneficio: 5%
+mss: 7%
+riesgo: variando
+msi: 3%
+periodo : 1,2,3,4 meses
+
+tras obtener los datos hemos realizado la obtencion de los datos variando el beneficio y estableciendo el riesgo en un 6% a la vista de los datos anteriormente obtenidos.
+
+A la vista de los datos variando el beneficio vemos que con valores entre 8 y 10 hay un mayor beneficio aunque con 6 y 7 se realiza alguna compra mas pero el beneficio se mantiene estable.
+
+‚Para la siguiente variacion de parametros estableceremos el beneficio en 7%, vamos a variar el mss. El numero de compras en 3 y 4 meses se mantiene estable aunque varie el mss, mientras que en 1 y 2 meses se va reduciendo normalmente conforme aumenta el mms. En cuanto a las ganancias, en 3 y 4 meses siempre han sido las mismas, en 2 meses las ganancias van disminuyendo hasta llegar al 6% que se mantienen invariantes, en 1 mes ocurre lo mismo al llegar a 5%, sin embargo al 4% hay un aumento considerable de ganancia, mantendremos un mss del 2% para proximas variaciones pues con valores mayores parece estancarse.
+
+He realizado una segunda prueba bajando el beneficio al 6% para ver si con mas margen superior obtenemos mejores resultados. Y el numero de compras aumenta levemente al igual que las ganancias para valores bajos del mss son mayores.
+
+Por tanto, aunque el beneficio que nos hemos marcado es menor, se realizan mas compras y hay mas ganancia.
+
+lo dejamos en 7% beneficio.
+
+estudiamos ahora el msi, cabe destacar que siempre se obtiene el mismo valor de ganancia aunque aumente el msi, convendria revisar si todo es correcto. Aparte de eso, se obtiene un mejor resultado cuando el periodo de tiempo es de 2 meses.

@@ -1,0 +1,893 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content p-md">
+                        <div class="tabs-container">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab-1"
+                                                        role="tab"> Candlestick</a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab-2" role="tab">Lineal</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="tab-1" class="tab-pane active" role="tabpanel">
+                                    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+                                </div>
+                                <div id="tab-2" class="tab-pane" role="tabpanel">
+                                    <div class="panel-body">
+                                        <div id="chartContainerLine" style="height: 370px; width: 100%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content text-center p-md">
+
+                        <fieldset>
+                            <h2>Parámetros</h2>
+
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <div class="form-group" id="fecha">
+                                        <label>Fecha inicio</label>
+
+                                        <div class="input-group date">
+                                                <span class="input-group-addon"><i
+                                                            class="fa fa-calendar"></i></span><input
+                                                    type="text" id="valorFecha" class="form-control" value="2000-05-01">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="form-group" id="fechaFin">
+                                        <label>Fecha fin</label>
+
+                                        <div class="input-group date">
+                                                <span class="input-group-addon"><i
+                                                            class="fa fa-calendar"></i></span><input
+                                                    type="text" id="valorFechaFin" class="form-control"
+                                                    value="2018-12-07">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-1">
+                                    <div class="form-group">
+                                        <label>Capital</label>
+                                        <input id="capital" name="capital" type="text"
+                                               class="form-control" value="50000">
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="form-group">
+                                        <label>Inversión Inicial (%)</label>
+                                        <input id="invInicial" name="Inversion inicial" type="text"
+                                               class="form-control" value="50">
+                                    </div>
+                                </div>
+                                <div class="col-lg-1">
+                                    <div class="form-group">
+                                        <label>Nº Compras</label>
+                                        <input id="numCompras" name="Num compras" type="text"
+                                               class="form-control" value="4">
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="form-group">
+                                        <label>Inversión por compra (%)</label>
+                                        <input id="invCompra" name="Inversion compra" type="text"
+                                               class="form-control" value="25">
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="form-group">
+                                        <label>Porcentaje compra (%)</label>
+                                        <input id="porcentajeCompra" name="Porcentaje compra" type="text"
+                                               class="form-control" value="5">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <div class="form-group">
+                                        <label>Beneficio (%)</label>
+                                        <input id="beneficio" name="beneficio" type="text"
+                                               class="form-control" value="6">
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="form-group">
+                                        <label>Margen Seguridad Superior (%)</label>
+                                        <input id="margen" name="margen" type="text" class="form-control" value="7">
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="form-group">
+                                        <label>Margen Pérdida (%)</label>
+                                        <input id="riesgo" name="riesgo" type="text"
+                                               class="form-control" value="3">
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="form-group">
+                                        <label>Margen Seguridad Inferior (%)</label>
+                                        <input id="margenInferior" name="margen inferior" type="text"
+                                               class="form-control" value="6">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-2">
+                                    <div class="form-group">
+                                        <label for="periodo">Período</label>
+                                        <input type="text" class="form-control required" id="periodo" name="dias">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-2">
+                                    <div class="form-group">
+                                        <label for="tipoPeriodo"> Tipo </label>
+                                        <select class="form-control form-control-sm" id="tipoPeriodo" name="account">
+                                            <option>meses</option>
+                                            <option>días</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <button id="buscarLocalizacion" class="btn btn-primary dim" type="button">
+                                            Algoritmo "Never Lose" Vs Indicadores trading
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-lg-1">
+                                </div>
+
+                                <div class="col-lg-2">
+                                    <div class="form-group">
+                                        <label for="parametro"> Parámetro </label>
+                                        <select class="form-control form-control-sm" id="parametro" name="account">
+                                            <option>beneficio</option>
+                                            <option>mss</option>
+                                            <option>margen pérdida</option>
+                                            <option>msi</option>
+                                            <option>% entre compras</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-2">
+                                    <div class="form-group">
+                                        <button id="mejoraParam" class="btn btn-warning dim" type="button">
+                                            Mejorar parámetro
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-2">
+                                    <div class="form-group">
+                                        <button id="multilineal" class="btn btn-warning dim" type="button">
+                                            Datos Multilineal
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div id="div_carga" class="col-xs-12 d-sm-none d-md-none d-lg-none">
+                            <img id="cargador" src="{{ asset('public/img/ajax-loader.gif') }}"/>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 hidden" id="resParam">
+
+                            </div>
+                            <div class="col-lg-6 hidden" id="graficaParam" style="width: 100%">
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 hidden" id="compras">
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 hidden" id="resultados">
+
+                            </div>
+                            <div class="col-lg-6 hidden" id="resultados2">
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 hidden" id="estocastico">
+
+                            </div>
+                            <div class="col-lg-6 hidden" id="roc">
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 hidden" id="rsi">
+
+                            </div>
+                            <div class="col-lg-6 hidden" id="sma">
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6 hidden" id="williams">
+
+                            </div>
+
+                            <div class="col-lg-6 hidden" id="adx">
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6 hidden" id="macd">
+
+                            </div>
+                            <div class="col-lg-6 hidden" id="macd2">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+{% endblock %}
+
+    {% block javascripts %}
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#fecha .input-group.date').datepicker({
+                    todayBtn: "linked",
+                    keyboardNavigation: false,
+                    forceParse: false,
+                    calendarWeeks: true,
+                    autoclose: true,
+                    format: 'yyyy-mm-dd'
+                });
+
+                $('#fechaFin .input-group.date').datepicker({
+                    todayBtn: "linked",
+                    keyboardNavigation: false,
+                    forceParse: false,
+                    calendarWeeks: true,
+                    autoclose: true,
+                    format: 'yyyy-mm-dd'
+                });
+
+                function processData(csv) {
+                    var allTextLines = csv.split(/\r\n|\n/);
+                    var dataPoints = [];
+                    for (var i = 1; i < allTextLines.length; i++) {
+                        if (allTextLines[i].length > 0) {
+                            var rowData = allTextLines[i].split(',');
+                            dataPoints.push({
+                                x: new Date(parseInt(rowData[0].split("-")[0]),
+                                        parseInt(rowData[0].split("-")[1]) - 1,
+                                        parseInt(rowData[0].split("-")[2])),
+                                y: [
+                                    parseFloat(rowData[1]),
+                                    parseFloat(rowData[2]),
+                                    parseFloat(rowData[3]),
+                                    parseFloat(rowData[4])
+                                ]
+
+                            });
+                        }
+                    }
+                    return dataPoints;
+                }
+
+                function processData2(csv) {
+                    var allTextLines = csv.split(/\r\n|\n/);
+                    var dataPoints = [];
+                    for (var i = 1; i < allTextLines.length; i++) {
+                        if (allTextLines[i].length > 0) {
+                            var rowData = allTextLines[i].split(',');
+                            dataPoints.push({
+                                x: new Date(parseInt(rowData[0].split("-")[0]),
+                                        parseInt(rowData[0].split("-")[1]) - 1,
+                                        parseInt(rowData[0].split("-")[2])),
+                                y: parseFloat(rowData[4])
+
+                            });
+                        }
+                    }
+                    return dataPoints;
+                }
+
+                var chart;
+                $.get("../public/csv/SAN.txt", function (data) {
+                    chart = new CanvasJS.Chart("chartContainer",
+                            {
+                                title: {
+                                    text: "Santander"
+                                },
+                                zoomEnabled: true,
+                                animationEnabled: true,
+                                zoomType: "xy",
+                                theme: "light2",
+                                axisY: {
+                                    includeZero: false,
+                                    title: "Precio",
+                                    prefix: ""
+                                },
+                                axisX: {
+                                    interval: 5,
+                                    //intervalType: "day",
+                                    //valueFormatString: "DD-MM-YY",
+                                    labelAngle: -35
+                                },
+                                data: [
+                                    {
+                                        type: "candlestick",
+                                        dataPoints: processData(data)
+                                    }
+                                ]
+                            });
+                    chart.render();
+                });
+
+                $.get("../public/csv/SAN.txt", function (data) {
+                    var chart1 = new CanvasJS.Chart("chartContainerLine",
+                            {
+                                title: {
+                                    text: "Santander"
+                                },
+                                zoomEnabled: true,
+                                animationEnabled: true,
+                                zoomType: "xy",
+                                theme: "light2",
+                                data: [
+                                    {
+                                        type: "line",
+                                        markerSize: 6,
+                                        name: "price",
+                                        dataPoints: processData2(data)
+                                    }]
+                            });
+                    chart1.render();
+                });
+
+                function assignRisingColorToDataPoints(chart) {
+                    for (var i = 0; i < chart.options.data[0].dataPoints.length; i++)
+                        if (chart.options.data[0].dataPoints[i].y[3] > chart.options.data[0].dataPoints[i].y[0]) // if close value is greater than open value, the dataPoint color is set to the risingColor to match the color of the borders
+                            chart.options.data[0].dataPoints[i].color = chart.options.data[0].risingColor;
+                }
+
+                $("#mejoraParam").click(function () {
+                    $.get("../public/csv/SAN.csv", function (data) {
+                        $('#resParam').html("");
+                        var error = false;
+                        var parametro = $("#parametro").val();
+
+                        if (parametro == 'beneficio') {
+                            $parametro = 'beneficio';
+                        } else if (parametro == 'mss') {
+                            $parametro = 'margen';
+                        } else if (parametro == 'margen pérdida') {
+                            $parametro = 'riesgo';
+                        } else if (parametro == 'msi') {
+                            $parametro = 'margenInferior';
+                        } else if (parametro == '% entre compras') {
+                            $parametro = 'porcentajeCompra';
+                        }
+
+                        var datos = [$("#riesgo").val(), $("#margen").val(), $("#periodo").val(), $("#tipoPeriodo").val(), $("#valorFecha").val(), $("#valorFechaFin").val(), $("#capital").val(), $("#beneficio").val(), $("#margenInferior").val(), $("#numCompras").val(), $("#invCompra").val(), $("#invInicial").val(), $("#porcentajeCompra").val(), $parametro];
+
+                        if (!error) {
+                            $('#div_carga').removeClass("d-sm-none d-md-none d-lg-none");
+                            $.ajax({
+                                type: "post",
+                                url: Routing.generate('mejora_parametro', true),
+                                data: {
+                                    'data': data,
+                                    'datos': datos
+                                },
+                                dataType: 'JSON',
+                                success: function (data2) {
+                                    $('#div_carga').addClass("d-sm-none d-md-none d-lg-none");
+                                    var filaParam = $('#resParam');
+                                    if (data2.resultado == true) {
+                                        //Tabla intervalos compras
+                                        filaParam.removeClass('hidden');
+                                        filaParam.append("<div class='col-xs-12'><h3>Resultados al variar el parámetro: <h3/><div>");
+                                        var fila2;
+                                        var item2;
+
+                                        /*
+                                         fila2 = $("<table class='table table-bordered'><thead><tr><th>Valor parámetro</th><th>Ganancia total</th> <th>Nº Compras</th></tr></thead>");
+                                         item2 = $('<tbody>');
+                                         fila2.append(item2);
+                                         for (var intervalo2 = 0; intervalo2 < data2.resParam.length; intervalo2++) {
+                                         item2 = $('<tr>');
+                                         fila2.append(item2);
+                                         item2.append("<td>" + data2.resParam[intervalo2]['valorParam'] + "</td>");
+                                         fila2.append(item2);
+                                         item2.append("<td>" + data2.resParam[intervalo2]['ganancia'] + "</td>");
+                                         fila2.append(item2);
+                                         item2.append("<td>" + data2.resParam[intervalo2]['numCompras'] + "</td>");
+                                         fila2.append(item2);
+                                         item2 = $('</tr>');
+                                         fila2.append(item2);
+                                         }
+                                         item2 = $('</tbody></table>');
+                                         fila2.append(item2);
+                                         filaParam.append(fila2);
+                                         */
+                                    }
+                                }
+                            })
+                        }
+                    })
+                });
+
+                $("#multilineal").click(function () {
+                    $.get("../public/csv/SAN.csv", function (data) {
+                        $('#resParam').html("");
+                        var error = false;
+                        var parametro = $("#parametro").val();
+
+                        if (parametro == 'beneficio') {
+                            $parametro = 'beneficio';
+                        } else if (parametro == 'mss') {
+                            $parametro = 'margen';
+                        } else if (parametro == 'margen pérdida') {
+                            $parametro = 'riesgo';
+                        } else if (parametro == 'msi') {
+                            $parametro = 'margenInferior';
+                        } else if (parametro == '% entre compras') {
+                            $parametro = 'porcentajeCompra';
+                        }
+
+                        var datos = [$("#riesgo").val(), $("#margen").val(), $("#periodo").val(), $("#tipoPeriodo").val(), $("#valorFecha").val(), $("#valorFechaFin").val(), $("#capital").val(), $("#beneficio").val(), $("#margenInferior").val(), $("#numCompras").val(), $("#invCompra").val(), $("#invInicial").val(), $("#porcentajeCompra").val(), $parametro];
+
+                        if (!error) {
+                            $('#div_carga').removeClass("d-sm-none d-md-none d-lg-none");
+                            $.ajax({
+                                type: "post",
+                                url: Routing.generate('multilineal', true),
+                                data: {
+                                    'data': data,
+                                    'datos': datos
+                                },
+                                dataType: 'JSON',
+                                success: function (data2) {
+                                    $('#div_carga').addClass("d-sm-none d-md-none d-lg-none");
+                                    if (data2.resultado == true) {
+                                    }
+                                }
+                            })
+                        }
+                    })
+                });
+
+                $("#buscarLocalizacion").click(function () {
+                    $.get("../public/csv/SAN.csv", function (data) {
+                        $('#resultados').html("");
+                        $('#resultados2').html("");
+                        $('#compras').html("");
+                        $('#rsi').html("");
+                        $('#macd').html("");
+                        $('#macd2').html("");
+                        $('#estocastico').html("");
+                        $('#roc').html("");
+                        $('#sma').html("");
+                        $('#williams').html("");
+                        $('#adx').html("");
+
+                        var error = false;
+                        var datos = [$("#riesgo").val(), $("#margen").val(), $("#periodo").val(), $("#tipoPeriodo").val(), $("#valorFecha").val(), $("#valorFechaFin").val(), $("#capital").val(), $("#beneficio").val(), $("#margenInferior").val(), $("#numCompras").val(), $("#invCompra").val(), $("#invInicial").val(), $("#porcentajeCompra").val()];
+
+                        if (!error) {
+                            $('#div_carga').removeClass("d-sm-none d-md-none d-lg-none");
+                            $.ajax({
+                                type: "post",
+                                url: Routing.generate('algoritmo_buscar', true),
+                                data: {
+                                    'data': data,
+                                    'datos': datos
+                                },
+                                dataType: 'JSON',
+                                success: function (data2) {
+                                    $('#div_carga').addClass("d-sm-none d-md-none d-lg-none");
+                                    var filaResultados = $('#resultados');
+                                    var filaResultados2 = $('#resultados2');
+                                    var filaCompras = $('#compras');
+                                    var filaRsi = $('#rsi');
+                                    var filaMacd = $('#macd');
+                                    var filaMacd2 = $('#macd2');
+                                    var filaEstocastico = $('#estocastico');
+                                    var filaRoc = $('#roc');
+                                    var filaSma = $('#sma');
+                                    var filaWilliams = $('#williams');
+                                    var filaAdx = $('#adx');
+
+                                    if (data2.resultado == true) {
+                                         //Tabla maximos
+                                        /*
+                                         filaResultados.removeClass('hidden');
+                                         filaResultados.append("<div class='col-xs-12'><h3>Intervalos con mismo máximo<h3/><div>");
+                                         var fila;
+                                         var item;
+
+                                         fila = $("<table class='table table-bordered'><thead><tr><th>Fecha Inicio</th><th>Fecha Fin</th> <th>Máximo</th></tr></thead>");
+                                         item = $('<tbody>');
+                                         fila.append(item);
+                                         for (var intervalo = 0; intervalo < data2.intervalos.length; intervalo++) {
+                                         item = $('<tr>');
+                                         fila.append(item);
+                                         item.append("<td>" + data2.intervalos[intervalo]['diaInicio'] + "</td>");
+                                         fila.append(item);
+                                         item.append("<td>" + data2.intervalos[intervalo]['diaFin'] + "</td>");
+                                         fila.append(item);
+                                         item.append("<td>" + data2.intervalos[intervalo]['maximo'] + "</td>");
+                                         fila.append(item);
+                                         item = $('</tr>');
+                                         fila.append(item);
+                                         }
+                                         item = $('</tbody></table>');
+                                         fila.append(item);
+                                         filaResultados.append(fila);
+                                         */
+
+
+                                        //Tabla intervalos compras
+                                        filaCompras.removeClass('hidden');
+                                        filaCompras.append("<div class='col-xs-12'><h3>Algoritmo 'Never Lose' <h3/><div>");
+                                        var fila2;
+                                        var item2;
+
+                                        fila2 = $("<table class='table table-bordered'><thead><tr><th>Fecha Inicio</th><th>Fecha Fin</th> <th>Precio Compra</th><th>Acciones compradas</th><th>Precio Venta</th><th>Ganancia</th><th>Capital restante</th></tr></thead>");
+                                        item2 = $('<tbody>');
+                                        fila2.append(item2);
+                                        for (var intervalo2 = 0; intervalo2 < data2.compras.length; intervalo2++) {
+                                            item2 = $('<tr>');
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.compras[intervalo2]['inicio'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.compras[intervalo2]['fin'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.compras[intervalo2]['precioCompra'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.compras[intervalo2]['acciones'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.compras[intervalo2]['precioVenta'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.compras[intervalo2]['ganancia'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.compras[intervalo2]['capitalRestante'] + "</td>");
+                                            fila2.append(item2);
+                                            item2 = $('</tr>');
+                                            fila2.append(item2);
+                                        }
+                                        item2 = $('</tbody></table>');
+                                        fila2.append(item2);
+                                        filaCompras.append(fila2);
+
+                                        //Tabla rsi
+                                        /*
+                                        filaRsi.removeClass('hidden');
+                                        filaRsi.append("<div class='col-xs-12'><h3>INDICADOR RSI<h3/><div>");
+
+                                        fila2 = $("<table class='table table-bordered'><thead><tr><th>Fecha Inicio</th><th>Fecha Fin</th> <th>Precio Compra</th><th>Acciones</th><th>Precio Venta</th><th>Ganancia</th><th>Capital Restante</th></tr></thead>");
+                                        item2 = $('<tbody>');
+                                        fila2.append(item2);
+                                        for (intervalo2 = 0; intervalo2 < data2.comprasRsi.length; intervalo2++) {
+                                            item2 = $('<tr>');
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasRsi[intervalo2]['inicio'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasRsi[intervalo2]['fin'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasRsi[intervalo2]['precioCompra'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasRsi[intervalo2]['acciones'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasRsi[intervalo2]['precioVenta'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasRsi[intervalo2]['ganancia'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasRsi[intervalo2]['capitalRestante'] + "</td>");
+                                            fila2.append(item2);
+                                            item2 = $('</tr>');
+                                            fila2.append(item2);
+                                        }
+                                        item2 = $('</tbody></table>');
+                                        fila2.append(item2);
+                                        filaRsi.append(fila2);
+                                        */
+
+                                        //Tabla macd
+                                        /*
+                                        filaMacd.removeClass('hidden');
+                                        filaMacd.append("<div class='col-xs-12'><h3>INDICADOR MACD<h3/><div>");
+
+                                        fila2 = $("<table class='table table-bordered'><thead><tr><th>Fecha Inicio</th><th>Fecha Fin</th> <th>Precio Compra</th><th>Acciones</th> <th>Precio Venta</th><th>Ganancia</th><th>Capital restante</th></tr></thead>");
+                                        item2 = $('<tbody>');
+                                        fila2.append(item2);
+                                        for (intervalo2 = 0; intervalo2 < data2.comprasMacd.length; intervalo2++) {
+                                            item2 = $('<tr>');
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasMacd[intervalo2]['inicio'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasMacd[intervalo2]['fin'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasMacd[intervalo2]['precioCompra'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasMacd[intervalo2]['acciones'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasMacd[intervalo2]['precioVenta'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasMacd[intervalo2]['ganancia'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasMacd[intervalo2]['capitalRestante'] + "</td>");
+                                            fila2.append(item2);
+                                            item2 = $('</tr>');
+                                            fila2.append(item2);
+                                        }
+                                        item2 = $('</tbody></table>');
+                                        fila2.append(item2);
+                                        filaMacd.append(fila2);
+                                        */
+
+                                        //Tabla macd
+                                        /*
+                                        filaMacd2.removeClass('hidden');
+                                        filaMacd2.append("<div class='col-xs-12'><h3>INDICADOR MACD 2<h3/><div>");
+
+                                        fila2 = $("<table class='table table-bordered'><thead><tr><th>Fecha Inicio</th><th>Fecha Fin</th> <th>Precio Compra</th><th>Acciones</th> <th>Precio Venta</th><th>Ganancia</th><th>Capital restante</th></tr></thead>");
+                                        item2 = $('<tbody>');
+                                        fila2.append(item2);
+                                        for (intervalo2 = 0; intervalo2 < data2.comprasMacd2.length; intervalo2++) {
+                                            item2 = $('<tr>');
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasMacd2[intervalo2]['inicio'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasMacd2[intervalo2]['fin'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasMacd2[intervalo2]['precioCompra'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasMacd2[intervalo2]['acciones'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasMacd2[intervalo2]['precioVenta'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasMacd2[intervalo2]['ganancia'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasMacd2[intervalo2]['capitalRestante'] + "</td>");
+                                            fila2.append(item2);
+                                            item2 = $('</tr>');
+                                            fila2.append(item2);
+                                        }
+                                        item2 = $('</tbody></table>');
+                                        fila2.append(item2);
+                                        filaMacd2.append(fila2);
+                                        */
+
+                                        //Tabla estocastico
+                                        /*
+                                        filaEstocastico.removeClass('hidden');
+                                        filaEstocastico.append("<div class='col-xs-12'><h3>INDICADOR ESTOCÁSTICO<h3/><div>");
+
+                                        fila2 = $("<table class='table table-bordered'><thead><tr><th>Fecha Inicio</th><th>Fecha Fin</th> <th>Precio Compra</th><th>Acciones</th><th>Precio Venta</th> <th>Ganancia</th><th>Capital restante</th></tr></thead>");
+                                        item2 = $('<tbody>');
+                                        fila2.append(item2);
+                                        for (intervalo2 = 0; intervalo2 < data2.comprasEstocastico.length; intervalo2++) {
+                                            item2 = $('<tr>');
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasEstocastico[intervalo2]['inicio'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasEstocastico[intervalo2]['fin'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasEstocastico[intervalo2]['precioCompra'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasEstocastico[intervalo2]['acciones'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasEstocastico[intervalo2]['precioVenta'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasEstocastico[intervalo2]['ganancia'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasEstocastico[intervalo2]['capitalRestante'] + "</td>");
+                                            fila2.append(item2);
+                                            item2 = $('</tr>');
+                                            fila2.append(item2);
+                                        }
+                                        item2 = $('</tbody></table>');
+                                        fila2.append(item2);
+                                        filaEstocastico.append(fila2);
+                                        */
+
+                                        //Tabla roc
+                                        /*
+                                        filaRoc.removeClass('hidden');
+                                        filaRoc.append("<div class='col-xs-12'><h3>INDICADOR ROC<h3/><div>");
+
+                                        fila2 = $("<table class='table table-bordered'><thead><tr><th>Fecha Inicio</th><th>Fecha Fin</th> <th>Precio Compra</th><th>Acciones</th><th>Precio Venta</th><th>Ganancia</th><th>Capital restante</th></tr></thead>");
+                                        item2 = $('<tbody>');
+                                        fila2.append(item2);
+                                        for (intervalo2 = 0; intervalo2 < data2.comprasRoc.length; intervalo2++) {
+                                            item2 = $('<tr>');
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasRoc[intervalo2]['inicio'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasRoc[intervalo2]['fin'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasRoc[intervalo2]['precioCompra'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasRoc[intervalo2]['acciones'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasRoc[intervalo2]['precioVenta'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasRoc[intervalo2]['ganancia'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasRoc[intervalo2]['capitalRestante'] + "</td>");
+                                            fila2.append(item2);
+                                            item2 = $('</tr>');
+                                            fila2.append(item2);
+                                        }
+                                        item2 = $('</tbody></table>');
+                                        fila2.append(item2);
+                                        filaRoc.append(fila2);
+                                        */
+
+                                        //Tabla williams
+                                        /*
+                                        filaWilliams.removeClass('hidden');
+                                        filaWilliams.append("<div class='col-xs-12'><h3>INDICADOR WILLIAMS<h3/><div>");
+
+                                        fila2 = $("<table class='table table-bordered'><thead><tr><th>Fecha Inicio</th><th>Fecha Fin</th> <th>Precio Compra</th><th>Acciones</th> <th>Precio Venta</th><th>Ganancia</th><th>Capital restante</th></tr></thead>");
+                                        item2 = $('<tbody>');
+                                        fila2.append(item2);
+                                        for (intervalo2 = 0; intervalo2 < data2.comprasWilliams.length; intervalo2++) {
+                                            item2 = $('<tr>');
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasWilliams[intervalo2]['inicio'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasWilliams[intervalo2]['fin'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasWilliams[intervalo2]['precioCompra'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasWilliams[intervalo2]['acciones'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasWilliams[intervalo2]['precioVenta'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasWilliams[intervalo2]['ganancia'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasWilliams[intervalo2]['capitalRestante'] + "</td>");
+                                            fila2.append(item2);
+                                            item2 = $('</tr>');
+                                            fila2.append(item2);
+                                        }
+                                        item2 = $('</tbody></table>');
+                                        fila2.append(item2);
+                                        filaWilliams.append(fila2);
+                                        */
+
+                                        //Tabla sma
+                                        /*
+                                        filaSma.removeClass('hidden');
+                                        filaSma.append("<div class='col-xs-12'><h3>INDICADOR SMA<h3/><div>");
+
+                                        fila2 = $("<table class='table table-bordered'><thead><tr><th>Fecha Inicio</th><th>Fecha Fin</th> <th>Precio Compra</th><th>Acciones</th><th>Precio Venta</th><th>Ganancia</th><th>Capital restante</th></tr></thead>");
+                                        item2 = $('<tbody>');
+                                        fila2.append(item2);
+                                        for (intervalo2 = 0; intervalo2 < data2.comprasSma.length; intervalo2++) {
+                                            item2 = $('<tr>');
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasSma[intervalo2]['inicio'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasSma[intervalo2]['fin'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasSma[intervalo2]['precioCompra'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasSma[intervalo2]['acciones'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasSma[intervalo2]['precioVenta'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasSma[intervalo2]['ganancia'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasSma[intervalo2]['capitalRestante'] + "</td>");
+                                            fila2.append(item2);
+                                            item2 = $('</tr>');
+                                            fila2.append(item2);
+                                        }
+                                        item2 = $('</tbody></table>');
+                                        fila2.append(item2);
+                                        filaSma.append(fila2);
+                                        */
+
+                                        //Tabla adx
+                                        /*
+                                        filaAdx.removeClass('hidden');
+                                        filaAdx.append("<div class='col-xs-12'><h3>INDICADOR ADX<h3/><div>");
+
+                                        fila2 = $("<table class='table table-bordered'><thead><tr><th>Fecha Inicio</th><th>Fecha Fin</th> <th>Precio Compra</th><th>Acciones</th><th>Precio Venta</th><th>Ganancia</th><th>Capital restante</th></tr></thead>");
+                                        item2 = $('<tbody>');
+                                        fila2.append(item2);
+                                        for (intervalo2 = 0; intervalo2 < data2.comprasAdx.length; intervalo2++) {
+                                            item2 = $('<tr>');
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasAdx[intervalo2]['inicio'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasAdx[intervalo2]['fin'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasAdx[intervalo2]['precioCompra'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasAdx[intervalo2]['acciones'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasAdx[intervalo2]['precioVenta'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasAdx[intervalo2]['ganancia'] + "</td>");
+                                            fila2.append(item2);
+                                            item2.append("<td>" + data2.comprasAdx[intervalo2]['capitalRestante'] + "</td>");
+                                            fila2.append(item2);
+                                            item2 = $('</tr>');
+                                            fila2.append(item2);
+                                        }
+                                        item2 = $('</tbody></table>');
+                                        fila2.append(item2);
+                                        filaAdx.append(fila2);
+                                        */
+
+                                        /*
+                                         //Renderizo el gráfico
+                                         $.get("../public/csv/SAN.txt", function (data) {
+                                         //Compruebo si los puntos se encuentran entre los escogidos por el algoritmo y
+                                         //le asigno color rojo
+                                         var dats = processData(data);
+                                         var arrayP = [];
+                                         for (var i = 0; i <= dats.length - 1; i++) {
+                                         for (var intervalo2 = 0; intervalo2 < data2.compras.length; intervalo2++) {
+                                         if (dats[i]['x'] >= data2.compras[intervalo2]['inicio'] && dats[i]['x'] <= data2.compras[intervalo2]['fin']){
+
+                                         arrayP.push(i);
+
+                                         }
+                                         }
+                                         }
+
+                                         for (var i = 0; i < arrayP.length; i++){
+                                         chart.options.data[0].dataPoints[arrayP[i]].color = "red";
+                                         }
+
+                                         chart.render();
+                                         });
+                                         */
+
+                                    } else {
+                                        filaResultados.removeClass('hidden');
+                                        filaResultados.append("<div class='col-xs-12 error'><h3>No hay resultados<h3/><div>");
+                                    }
+                                }
+                            });
+                        }
+                    })
+                });
+
+            });
+        </script>
+
+    {% endblock %}

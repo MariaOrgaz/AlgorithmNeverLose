@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Inversión en Bolsa{% endblock %}</title>
+
+    <link href="{{ asset('public/css/highcharts.css') }}" type="text/css" rel="stylesheet"/>
+    <link href="{{ asset('public/css/bootstrap.min.css') }}" type="text/css" rel="stylesheet"/>
+    <link href="{{ asset('public/css/style.css') }}" type="text/css" rel="stylesheet"/>
+    <link href="{{ asset('public/css/animate.css') }}" type="text/css" rel="stylesheet"/>
+    <link href="{{ asset('public/font-awesome/css/font-awesome.css') }}" type="text/css" rel="stylesheet"/>
+    <link href="{{ asset('public/css/plugins/datapicker/datepicker3.css') }}" type="text/css" rel="stylesheet"/>
+
+    <link href="{{ asset('public/css/plugins/select2/select2.min.css') }}" type="text/css" rel="stylesheet"/>
+    <link href="{{ asset('public/css/plugins/fullcalendar/fullcalendar.css') }}" type="text/css" rel="stylesheet"/>
+
+
+    <link href="{{ asset('public/css/plugins/iCheck/custom.css') }}" type="text/css" rel="stylesheet"/>
+    <link href="{{ asset('public/css/plugins/chosen/chosen.css') }}" type="text/css" rel="stylesheet"/>
+    <link href="{{ asset('public/css/plugins/colorpicker/bootstrap-colorpicker.min.css') }}" type="text/css" rel="stylesheet"/>
+    <link href="{{ asset('public/css/plugins/cropper/cropper.min.css') }}" type="text/css" rel="stylesheet"/>
+    <link href="{{ asset('public/css/plugins/switchery/switchery.css') }}" type="text/css" rel="stylesheet"/>
+    <link href="{{ asset('public/css/plugins/jasny/jasny-bootstrap.min.css') }}" type="text/css" rel="stylesheet"/>
+    <link href="{{ asset('public/css/plugins/nouslider/jquery.nouislider.css') }}" type="text/css" rel="stylesheet"/>
+    <link href="{{ asset('public/css/plugins/ionRangeSlider/ion.rangeSlider.css') }}" type="text/css" rel="stylesheet"/>
+    <link href="{{ asset('public/css/plugins/ionRangeSlider/ion.rangeSlider.skinFlat.css') }}" type="text/css" rel="stylesheet"/>
+    <link href="{{ asset('public/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css') }}" type="text/css" rel="stylesheet"/>
+    <link href="{{ asset('public/css/plugins/clockpicker/clockpicker.css') }}" type="text/css" rel="stylesheet"/>
+    <link href="{{ asset('public/css/plugins/daterangepicker/daterangepicker-bs3.css') }}" type="text/css" rel="stylesheet"/>
+
+    {% block stylesheets %}{% endblock %}
+</head>
+
+<body>
+<div id="wrapper">
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header" style="width: 100%">
+                    <div class="dropdown profile-element">
+                        <span>
+                            <img alt="image" class="img-circle" src="../public/img/profile_small.jpg"/>
+                        </span>
+                        <a href="#">
+                            <span class="clear">
+                                <span class="block m-t-xs"> <strong class="font-bold">María Orgaz</strong></span>
+                                <span class="text-muted text-xs block">Developer</span>
+                            </span>
+                        </a>
+                    </div>
+                </li>
+                <li style="width: 100%">
+                    <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Empresas IBEX 35</span><span
+                                class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="{{ path('abengoa') }}">ABENGOA CL.B</a></li>
+                        <li><a href="{{ path('abertis') }}">ABERTIS</a></li>
+                        <li><a href="{{ path('acerinox') }}">ACERINOX</a></li>
+                        <li><a href="{{ path('acs') }}">ACS</a></li>
+                        <li><a href="{{ path('aena') }}">AENA</a></li>
+                        <li><a href="{{ path('amadeus') }}">AMADEUS</a></li>
+                        <li><a href="{{ path('arcelomittal') }}">ARCELORMITTAL</a></li>
+                        <li><a href="{{ path('bankia') }}">BANKIA</a></li>
+                        <li><a href="{{ path('bankinter') }}">BANKINTER</a></li>
+                        <li><a href="{{ path('bbva') }}">BBVA</a></li>
+                        <li><a href="{{ path('caixabank') }}">CAIXABANK</a></li>
+                        <li><a href="{{ path('dia') }}">DIA</a></li>
+                        <li><a href="{{ path('enagas') }}">ENAGAS</a></li>
+                        <li><a href="{{ path('fcc') }}">FCC</a></li>
+                        <li><a href="{{ path('ferrovial') }}">FERROVIAL</a></li>
+                        <li><a href="{{ path('gamesa') }}">GAMESA</a></li>
+                        <li><a href="{{ path('gas_natural') }}">GAS NATURAL</a></li>
+                        <li><a href="{{ path('grifols') }}">GRIFOLS</a></li>
+                        <li><a href="{{ path('iag') }}">IAG (IBERIA)</a></li>
+                        <li><a href="{{ path('iberdrola') }}">IBERDROLA</a></li>
+                        <li><a href="{{ path('inditex') }}">INDITEX</a></li>
+                        <li><a href="{{ path('indra') }}">INDRA</a></li>
+                        <li><a href="{{ path('jazztel') }}">JAZZTEL</a></li>
+                        <li><a href="{{ path('mapfre') }}">MAPFRE</a></li>
+                        <li><a href="{{ path('mediaset') }}">MEDIASET</a></li>
+                        <li><a href="{{ path('ohl') }}">OHL</a></li>
+                        <li><a href="{{ path('popular') }}">POPULAR</a></li>
+                        <li><a href="{{ path('repsol') }}">REPSOL</a></li>
+                        <li><a href="{{ path('sabadell') }}">SABADELL</a></li>
+                        <li><a href="{{ path('sacyr') }}">SACYR</a></li>
+                        <li><a href="{{ path('santander') }}">SANTANDER</a></li>
+                        <li><a href="{{ path('tecnicas_reunidas') }}">TECNICAS REUNIDAS</a></li>
+                        <li><a href="{{ path('telefonica') }}">TELEFONICA</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+
+    <div id="page-wrapper" class="gray-bg">
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-lg-10">
+                <h2>Índices</h2>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="{{ path('index') }}">Inicio</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a>Empresas Ibex 35</a>
+                    </li>
+                    <li class="breadcrumb-item active">
+                        <strong>Santander</strong>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="wrapper wrapper-content animated fadeInRight">
+            {% block body %}{% endblock %}
+
+        </div>
+
+        <div class="footer">
+            <div class="pull-right">
+                Versión <strong>1.0</strong>
+            </div>
+            <div>
+                <strong>Copyright</strong> María Orgaz &copy; 2018
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="{{ asset('public/js/jquery-2.1.1.js') }}"></script>
+<script src="{{ asset('public/js/jquery-ui-1.12.1.min.js') }}"></script>
+<script src="{{ asset('public/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('public/js/inspinia.js') }}"></script>
+<script src="{{ asset('public/js/plugins/pace/pace.min.js') }}"></script>
+<script src="{{ asset('public/js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
+<script src="{{ asset('public/js/plugins/chosen/chosen.jquery.js') }}"></script>
+<script src="{{ asset('public/js/plugins/jsKnob/jquery.knob.js') }}"></script>
+<script src="{{ asset('public/js/plugins/jasny/jasny-bootstrap.min.js') }}"></script>
+<script src="{{ asset('public/js/plugins/datapicker/bootstrap-datepicker.js') }}"></script>
+
+<!-- Routing -->
+<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
+
+<script src="{{ asset('public/js/highstock.js') }}"></script>
+<script src="{{ asset('public/js/exporting.js') }}"></script>
+<script src="{{ asset('public/js/accessibility.js') }}"></script>
+<script src="{{ asset('public/js/export-data.js') }}"></script>
+<script src="{{ asset('public/js/canvasjs.min.js') }}"></script>
+<script src="{{ asset('public/js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
+<script src="{{ asset('public/js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
+
+
+{% block javascripts %}{% endblock %}
+</body>
+
+</html>
